@@ -5,6 +5,7 @@ import os
 import sys
 
 from colcon_core.plugin_system import satisfies_version
+from colcon_metadata.metadata import get_metadata_files
 from colcon_metadata.metadata import get_metadata_path
 from colcon_metadata.metadata.repository import get_repositories
 from colcon_metadata.metadata.repository import get_repository_metadata_files
@@ -127,11 +128,20 @@ class UpdateMetadataSubverb(MetadataSubverbExtensionPoint):
                 with destination_path.open('w') as h:
                     h.write(content)
 
-            # remove obsolete metadata files
+            # remove / rename obsolete metadata files
             for metadata_file in metadata_files_before:
                 if os.path.basename(metadata_file) not in metadata_basenames:
                     os.rename(metadata_file, metadata_file + '.obsolete')
                     print('  - {metadata_file} -> *.obsolete'
                           .format_map(locals()))
+
+        # remove / rename metadata files from obsolete repositories
+        obsolete_files = set(get_metadata_files())
+        for name in repos.keys():
+            obsolete_files -= set(get_repository_metadata_files(
+                repository_name=name))
+        for metadata_file in sorted(obsolete_files):
+            os.rename(metadata_file, metadata_file + '.obsolete')
+            print('  - {metadata_file} -> *.obsolete'.format_map(locals()))
 
         return rc

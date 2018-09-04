@@ -1,7 +1,7 @@
 # Copyright 2016-2018 Dirk Thomas
 # Licensed under the Apache License, Version 2.0
 
-import json
+import yaml
 
 from colcon_core.logging import colcon_logger
 from colcon_core.package_augmentation import PackageAugmentationExtensionPoint
@@ -78,4 +78,4 @@ class ColconPkgPackageIdentification(
         if not colcon_pkg_path.is_file():
             return None
         content = colcon_pkg_path.read_text()
-        return json.loads(content)
+        return yaml.load(content)

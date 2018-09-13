@@ -38,7 +38,7 @@ class ColconMetadataPackageIdentification(
                         "Package '{desc.path}' has configured type "
                         "'{desc.type}'".format_map(locals()))
                 elif desc.type != metadata2.get('type'):
-                    logger.warn(
+                    logger.warning(
                         "type '%s' of package '%s' does not match configured "
                         "type '%s'", desc.type, desc.path,
                         metadata2.get('type'))
@@ -49,7 +49,7 @@ class ColconMetadataPackageIdentification(
                         "Package '{desc.path}' has configured name "
                         "'{desc.name}'" .format_map(locals()))
                 elif desc.name != metadata2.get('name'):
-                    logger.warn(
+                    logger.warning(
                         "name '%s' of package '%s' does not match configured "
                         "name '%s'", desc.name, desc.path,
                         metadata2.get('name'))
@@ -60,7 +60,7 @@ class ColconMetadataPackageIdentification(
                 # if the package name was defined based on the path
                 # then ignore the type defined for the package name
                 if desc.type is not None and desc.type != data['type']:
-                    logger.warn(
+                    logger.warning(
                         "type '{desc.type}' of package '{desc.name}' "
                         "does not match configured type '{data[type]}'"
                         .format_map(locals()))

@@ -68,7 +68,7 @@ class ColconMetadataDiscovery(PackageDiscoveryExtensionPoint):
         try:
             data = yaml.load(content)
         except Exception as e:
-            logger.warn(
+            logger.warning(
                 "Skipping metadata file '%s' since it failed to parse: %s" %
                 (meta_path.absolute(), e))
             return
@@ -78,7 +78,7 @@ class ColconMetadataDiscovery(PackageDiscoveryExtensionPoint):
                 "Empty metadata file '%s'" % meta_path.absolute())
             return
         if not isinstance(data, dict):
-            logger.warn(
+            logger.warning(
                 "Skipping metadata file '%s' since it doesn't contain a dict" %
                 meta_path.absolute())
             return

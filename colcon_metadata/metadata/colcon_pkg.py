@@ -38,7 +38,7 @@ class ColconPkgPackageIdentification(
         # check for package type
         if 'type' in data:
             if desc.type is not None and desc.type != data['type']:
-                logger.warn(
+                logger.warning(
                     "Type '%s' of package '%s' does not match configured "
                     "type '%s'", desc.type, desc.path, data['type'])
             else:
@@ -50,7 +50,7 @@ class ColconPkgPackageIdentification(
         # check for package name
         if 'name' in data:
             if desc.name is not None and desc.name != data['name']:
-                logger.warn(
+                logger.warning(
                     "Name '%s' of package '%s' does not match configured "
                     "name '%s'", desc.name, desc.path, data['name'])
             else:

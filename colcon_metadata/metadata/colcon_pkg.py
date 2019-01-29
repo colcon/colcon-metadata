@@ -1,14 +1,13 @@
 # Copyright 2016-2018 Dirk Thomas
 # Licensed under the Apache License, Version 2.0
 
-import yaml
-
 from colcon_core.logging import colcon_logger
 from colcon_core.package_augmentation import PackageAugmentationExtensionPoint
 from colcon_core.package_augmentation import update_descriptor
 from colcon_core.package_identification \
     import PackageIdentificationExtensionPoint
 from colcon_core.plugin_system import satisfies_version
+import yaml
 
 logger = colcon_logger.getChild(__name__)
 

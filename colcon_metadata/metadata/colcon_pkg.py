@@ -77,4 +77,4 @@ class ColconPkgPackageIdentification(
         if not colcon_pkg_path.is_file():
             return None
         content = colcon_pkg_path.read_text()
-        return yaml.load(content)
+        return yaml.safe_load(content)

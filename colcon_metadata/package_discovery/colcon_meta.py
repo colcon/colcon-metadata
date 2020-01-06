@@ -38,7 +38,7 @@ class ColconMetadataDiscovery(PackageDiscoveryExtensionPoint):
             '--metas',
             nargs='*',
             metavar='PATH',
-            default='./colcon.meta',
+            default=['./colcon.meta'],
             help='The directories containing a `colcon.meta` file or paths to '
                  'arbitrary files containing the same meta information '
                  '(default: ./colcon.meta)')

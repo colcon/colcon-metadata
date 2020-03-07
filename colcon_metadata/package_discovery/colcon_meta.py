@@ -9,6 +9,7 @@ from colcon_core.package_discovery import PackageDiscoveryExtensionPoint
 from colcon_core.plugin_system import satisfies_version
 from colcon_metadata.metadata import get_metadata_files
 from colcon_metadata.metadata import get_metadata_path
+from colcon_metadata.metadata import merge_metadata
 from colcon_metadata.metadata import metadata_by_name
 from colcon_metadata.metadata import metadata_by_path
 import yaml
@@ -87,9 +88,10 @@ class ColconMetadataDiscovery(PackageDiscoveryExtensionPoint):
             "Using configuration from '%s'" % meta_path.absolute())
         if 'names' in data and isinstance(data['names'], dict):
             for name, v in data['names'].items():
-                metadata_by_name[name].update(v)
+                merge_metadata(metadata_by_name[name], v, meta_path.absolute())
         if 'paths' in data and isinstance(data['paths'], dict):
             for path, value in data['paths'].items():
                 path = meta_path.parent / path
-                metadata_by_path[
-                    os.path.realpath(str(path))].update(value)
+                merge_metadata(
+                    metadata_by_path[os.path.realpath(str(path))], value,
+                    meta_path.absolute())

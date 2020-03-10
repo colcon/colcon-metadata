@@ -51,7 +51,7 @@ def get_metadata_files(path=None):
     return files
 
 
-def merge_metadata(dst_dict, other_dict, meta_source):
+def merge_metadata(dst_dict, src_dict, meta_source):
     """
     Merge the data from one dictionary into another.
 
@@ -59,12 +59,12 @@ def merge_metadata(dst_dict, other_dict, meta_source):
     called to set or update the key in the destination dictionary.
 
     :param dst_dict: The dictionary to be updated
-    :param other_dict: The dictionary containing the information to be merged
+    :param src_dict: The dictionary containing the information to be merged
       into the destination dictionary
     :param str meta_source: The source of the metadata, only used for log
       messages
     """
-    for key, value in other_dict.items():
+    for key, value in src_dict.items():
         merge_metadata_value(dst_dict, key, value, meta_source)
 
 

@@ -70,7 +70,7 @@ def merge_metadata(dst_dict, other_dict, meta_source):
 
 def merge_metadata_value(dict_, key, value, meta_source):
     """
-    Set or update an key of a dictionary.
+    Set or update a key of a dictionary.
 
     If the key exists and the passed value as well as the current value of the
     key are dictionaries then the current values are being updated with the

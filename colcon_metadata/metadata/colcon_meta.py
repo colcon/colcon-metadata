@@ -78,7 +78,7 @@ class ColconMetadataPackageIdentification(
             update_descriptor(
                 desc, metadata_by_name[desc.name],
                 additional_argument_names=additional_argument_names)
-        if str(desc.path) in metadata_by_path:
+        if os.path.realpath(str(desc.path)) in metadata_by_path:
             update_descriptor(
-                desc, metadata_by_path[str(desc.path)],
+                desc, metadata_by_path[os.path.realpath(str(desc.path))],
                 additional_argument_names=additional_argument_names)

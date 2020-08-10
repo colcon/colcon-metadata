@@ -1,6 +1,8 @@
 # Copyright 2016-2018 Dirk Thomas
 # Licensed under the Apache License, Version 2.0
 
+import os
+
 from colcon_core.package_augmentation import PackageAugmentationExtensionPoint
 from colcon_core.package_augmentation import update_descriptor
 from colcon_core.package_identification import logger
@@ -29,8 +31,8 @@ class ColconMetadataPackageIdentification(
             PackageAugmentationExtensionPoint.EXTENSION_POINT_VERSION, '^1.0')
 
     def identify(self, desc):  # noqa: D102
-        if str(desc.path) in metadata_by_path:
-            metadata2 = metadata_by_path[str(desc.path)]
+        if os.path.realpath(str(desc.path)) in metadata_by_path:
+            metadata2 = metadata_by_path[os.path.realpath(str(desc.path))]
             if metadata2.get('type'):
                 if desc.type is None:
                     desc.type = metadata2.get('type')
@@ -76,7 +78,7 @@ class ColconMetadataPackageIdentification(
             update_descriptor(
                 desc, metadata_by_name[desc.name],
                 additional_argument_names=additional_argument_names)
-        if str(desc.path) in metadata_by_path:
+        if os.path.realpath(str(desc.path)) in metadata_by_path:
             update_descriptor(
-                desc, metadata_by_path[str(desc.path)],
+                desc, metadata_by_path[os.path.realpath(str(desc.path))],
                 additional_argument_names=additional_argument_names)

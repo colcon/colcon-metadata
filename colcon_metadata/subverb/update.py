@@ -2,10 +2,7 @@
 # Licensed under the Apache License, Version 2.0
 
 import os
-import socket
 import sys
-from urllib.error import HTTPError
-from urllib.error import URLError
 
 from colcon_core.plugin_system import satisfies_version
 from colcon_metadata.metadata import get_metadata_files
@@ -64,7 +61,7 @@ class UpdateMetadataSubverb(MetadataSubverbExtensionPoint):
             print('fetching {name}: {index_url} ...'.format_map(locals()))
             try:
                 content = load_url(index_url)
-            except (HTTPError, URLError, socket.timeout) as e:
+            except Exception as e:  # noqa: B902
                 print(' ', str(e), file=sys.stderr)
                 rc = 1
                 continue
@@ -72,7 +69,7 @@ class UpdateMetadataSubverb(MetadataSubverbExtensionPoint):
             # parse the repository index
             try:
                 data = yaml.safe_load(content)
-            except Exception as e:  # noqa: B902 (possible exceptions unclear)
+            except Exception as e:  # noqa: B902
                 print(' ', str(e), file=sys.stderr)
                 rc = 1
                 continue
@@ -102,7 +99,7 @@ class UpdateMetadataSubverb(MetadataSubverbExtensionPoint):
                 print('  fetching {metadata_url} ...'.format_map(locals()))
                 try:
                     content = load_url(metadata_url)
-                except (HTTPError, URLError, socket.timeout) as e:
+                except Exception as e:  # noqa: B902
                     print('  -', str(e), file=sys.stderr)
                     rc = 1
                     continue

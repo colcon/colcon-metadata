@@ -68,7 +68,7 @@ class ColconMetadataDiscovery(PackageDiscoveryExtensionPoint):
         content = meta_path.read_text()
         try:
             data = yaml.safe_load(content)
-        except Exception as e:
+        except Exception as e:  # noqa: B902 (possible exceptions unclear)
             logger.warning(
                 "Skipping metadata file '%s' since it failed to parse: %s" %
                 (meta_path.absolute(), e))

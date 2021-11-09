@@ -58,9 +58,9 @@ class ColconPkgPackageIdentification(
                     data['name'], desc.path)
                 desc.name = data['name']
 
-    def augment_package(
+    def augment_package(  # noqa: D102
         self, desc, *, additional_argument_names
-    ):  # noqa: D102
+    ):
         data = self._get_colcon_pkg_data(desc.path)
         if not data:
             return

@@ -69,9 +69,9 @@ class ColconMetadataPackageIdentification(
                 else:
                     desc.type = data['type']
 
-    def augment_package(
+    def augment_package(  # noqa: D102
         self, desc, *, additional_argument_names
-    ):  # noqa: D102
+    ):
         # deliberatively ignore the package type
         # since this extension can contribute meta information to any package
         if desc.name in metadata_by_name:

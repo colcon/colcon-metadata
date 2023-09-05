@@ -106,7 +106,7 @@ def merge_metadata_value(dict_, key, value, meta_source):
         old_value |= value
         return
 
-    if old_value is not None and type(old_value) != type(value):
+    if old_value is not None and type(old_value) is not type(value):
         logger.warning(
             "metadata from '{meta_source}' overwrites '{key}' with different "
             "type from value '{old_value}' to '{value}'".format_map(locals()))

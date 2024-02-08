@@ -8,10 +8,12 @@ completers
 defaultdict
 deliberatively
 iterdir
+linter
 nargs
 noqa
 pathlib
 plugin
+pydocstyle
 pytest
 rtype
 scspell

@@ -26,7 +26,6 @@ def get_repositories():
 
     :rtype: dict
     """
-    global metadata_repositories_file
     if not metadata_repositories_file.exists():
         return {}
     if metadata_repositories_file.is_dir():
@@ -46,7 +45,6 @@ def set_repositories(repositories):
     """
     assert isinstance(repositories, dict), \
         'The passed repositories should be a dictionary'
-    global metadata_repositories_file
     data = yaml.dump(repositories, default_flow_style=False)
     os.makedirs(str(metadata_repositories_file.parent), exist_ok=True)
     with metadata_repositories_file.open('w') as h:

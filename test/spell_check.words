@@ -10,6 +10,7 @@ deliberatively
 iterdir
 linter
 nargs
+netrc
 noqa
 pathlib
 plugin

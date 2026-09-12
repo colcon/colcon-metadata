@@ -52,12 +52,17 @@ class ColconMetadataDiscovery(PackageDiscoveryExtensionPoint):
         for meta in args.metas or []:
             path = Path(meta)
             if not path.exists():
+                logger.warning(
+                    "Path '%s' is neither a file or a folder. Skipping metadata path." % path.absolute())
                 continue
             if path.is_dir():
                 path_file = path / 'colcon.meta'
                 if not path_file.exists():
+                    logger.warning(
+                        "Folder '%s' does not contains a `colcon.meta` file. Skipping metadata path." % path.absolute())
                     continue
                 path = path_file
+            logger.info("Found metadata file '%s'" % path.absolute())
             self._add(path)
 
         # doesn't implement the `discover()` method
